@@ -62,6 +62,4 @@ app.get('/getAll', (req, res) => {
 	})
 })
 
-app.listen(5000, () => {
-	console.log('Listening on port', 5000)
-})
+app.listen(process.env.PORT, () => console.log(`app is running in port ${process.env.PORT}`));
