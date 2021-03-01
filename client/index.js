@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					title: document.getElementById('todo-input').value
+					todo: document.getElementById('todo-input').value
 				})
 			})
 			.then(resp => console.log(resp))

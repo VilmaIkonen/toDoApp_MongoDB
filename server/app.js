@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 app.post('/insert', (req, res) => {
 const newToDo = new ToDo({
 		todo: req.body.todo,
-		date_added: req.body.date_added
+		date_added: new Date()
 	});
 
 	newToDo.save().then(() => console.log('Successfully saved a new tod to MongoDB'))
