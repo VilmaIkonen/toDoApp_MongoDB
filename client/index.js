@@ -28,12 +28,20 @@ document.querySelector('#getAll').addEventListener('click',  () => {
 const loadData = (todos) => {
 	const table = document.querySelector('table tbody');
 
+	// if (todos.length === 0) {
+	// 	table.innerHTML = "<tr><td class='no-data' colspan='5'>No todos</td></tr>";
+	// 	return;
+	// }
+
 	let tableHtml = "";
 
-	todos.forEach(({todo, date_added}) => {
+	todos.forEach(({id, todo, date_added}) => {
 		tableHtml += "<tr>";
+		tableHtml += `<td>${Math.floor(Math.random() * Date.now(id))}</td>`;
 		tableHtml += `<td>${todo}</td>`;
 		tableHtml += `<td>${new Date(date_added).toLocaleDateString('en-GB')}</td>`;
+		tableHtml += `<td><button class="delete-row-btn" data-id=${id}>Delete</td>`;
+		tableHtml += `<td><button class="edit-row-btn" data-id=${id}>Edit</td>`;
 		tableHtml += "</tr>";
 	});
 

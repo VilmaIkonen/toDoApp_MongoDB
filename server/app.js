@@ -35,6 +35,7 @@ db.on('disconnected', function () {
 const Schema = mongoose.Schema;
 
 const toDoSchema = new Schema({
+	id: Number,
   todo: String,
   date_added: Date
 })
@@ -47,6 +48,7 @@ app.get('/', (req, res) => {
 
 app.post('/insert', (req, res) => {
 const newToDo = new ToDo({
+		id: req.body.id,
 		todo: req.body.todo,
 		date_added: new Date()
 	});
