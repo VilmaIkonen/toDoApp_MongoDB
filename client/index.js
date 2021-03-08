@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const backend = 'http://localhost:5000/insert';
 
 	document.querySelector('[type="submit"]').addEventListener('click', (event) => {
-	event.preventDefault();
 	fetch(backend, {
 		method: 'POST',
 		headers: {
@@ -16,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	.then(resp => console.log(resp))
 	.catch(err => console.log(err))
 	})
+	document.getElementById('add-todo').reset();
 })
 
 // Getting data from MongoDB:
@@ -27,11 +27,6 @@ document.querySelector('#getAll').addEventListener('click',  () => {
 
 const loadData = (todos) => {
 	const table = document.querySelector('table tbody');
-
-	// if (todos.length === 0) {
-	// 	table.innerHTML = "<tr><td class='no-data' colspan='5'>No todos</td></tr>";
-	// 	return;
-	// }
 
 	let tableHtml = "";
 

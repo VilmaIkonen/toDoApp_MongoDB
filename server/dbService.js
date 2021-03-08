@@ -1,52 +1,35 @@
-// const mongoose = require('mongoose');
-// const dotenv = require('dotenv');
-// dotenv.config();
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
 
-// const CONNECTION_URL = process.env.MONGODB_URI;
-// // alternatively, if using local MDB Compass:
-// // const localMongoDB = 'mongodb://localhost:27017/toDoApp'; // FIX THIS!
+const CONNECTION_URL = process.env.MONGODB_URI;
 
-// class dbService {
-//   CONNECTION_URL = process.env.MONGODB_URI;
-//   // localMongoDB = 'mongodb://localhost:27017/toDoApp'; // FIX THIS!
+const db = mongoose.connection;
 
-//   constructor(db) {
-//     this.db = db;
-//   }
-// }
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// const db = mongoose.connection;
+db.on('connected', function () {
+  console.log('Mongoose default connection open');
+});
 
-// mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+// If the connection throws an error
+db.on('error', function (err) {
+  console.log('Mongoose default connection error: ' + err);
+});
 
-// db.on('connected', function () {
-//   console.log('Mongoose default connection open');
-// });
+// When the connection is disconnected
+db.on('disconnected', function () {
+  console.log('Mongoose default connection disconnected');
+});
 
-// // If the connection throws an error
-// db.on('error', function (err) {
-//   console.log('Mongoose default connection error: ' + err);
-// });
+const Schema = mongoose.Schema;
 
-// // When the connection is disconnected
-// db.on('disconnected', function () {
-//   console.log('Mongoose default connection disconnected');
-// });
+const toDoSchema = new Schema({
+  id: Number,
+  todo: String,
+  date_added: Date
+})
 
-// const Schema = mongoose.Schema;
+const ToDo = mongoose.model('ToDo', toDoSchema);  // Naming the collection automatically as here 'ToDo' and using defined schema for it
 
-// const toDoSchema = new Schema({
-//   id: Number,
-//   todo: String,
-//   date_added: Date
-// })
-
-// const ToDo = mongoose.model('ToDo', toDoSchema);  // Naming the collection automatically as here 'ToDo' and using defined schema for it
-
-// // const newToDo = new ToDo({
-// //   id: 1,
-// //   todo: 'Buy vitamins',
-// //   date_added: new Date
-// // })
-
-// // newToDo.save().then(() => console.log('Saved new todo in MongoDB'))
+module.exports = {ToDo}

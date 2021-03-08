@@ -8,11 +8,12 @@
 </head>
 <body>
 	<main>
-		<label>Add to do: </label>
-		<input type="text" id="todo-input" name="todo-input">
-		<button type="submit" id="add-todo-btn">Add</button>
+		<form id="add-todo">
+			<label>Add to do: </label>
+			<input type="text" id="todo-input" name="todo-input">
+			<button type="submit" id="add-todo-btn">Add</button>
+		</form>
 		<button type="button" id="getAll">Get All Todos</button>
-
 		<table id="table">
 			<thead>
 					<th>Id</th>	
@@ -22,8 +23,7 @@
 					<th>Edit</th>
 			</thead>
 			<tbody></tbody>
-	</table>
-
+		</table>
 	</main>
 	<script src="index.js"></script>
 </body>
